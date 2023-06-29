@@ -20,5 +20,5 @@ from principal.views import Muestra
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('publicacion/<str:idpublicacion>', Muestra.as_view(), name='muestra'),
+    path('publicacion/<str:idpublicacion>', Muestra.as_view(), name='muestra')
 ]
