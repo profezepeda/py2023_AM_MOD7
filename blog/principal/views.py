@@ -1,5 +1,5 @@
 import os
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
 from principal.models import Publicacion, Comentario, Visita
 from django.contrib.auth.models import Group, User
@@ -10,9 +10,12 @@ class Muestra(TemplateView):
   template_name = 'muestra.html'
 
   def get(self, request, idpublicacion, *args, **kwargs):
-    publicacion = Publicacion.objects.get(idpublicacion=idpublicacion)
-    if publicacion is None:
+    try:
+      # publicacion = Publicacion.objects.get(idpublicacion=idpublicacion)
+      publicacion = get_object_or_404(Publicacion, idpublicacion=idpublicacion)
+    except:
       return render(request, '404.html')
+
     context = {
       "post": publicacion,
       "comentarios": Comentario.objects.filter(publicacion=publicacion).all()
