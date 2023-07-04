@@ -36,11 +36,15 @@ class Publicacion(models.Model):
   def __str__(self):
       return self.titulo
 
+
 class Comentario(models.Model):
   fechahora = models.DateTimeField(default=timezone.now)
   comentario = models.TextField(null=False, blank=False)
   publicacion = models.ForeignKey(Publicacion, on_delete=models.CASCADE, null=False)
   usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+  
+  class Meta:
+    db_table = 'comentario'
 
 class Perfil(models.Model):
   usuario = models.OneToOneField(User, on_delete=models.CASCADE)

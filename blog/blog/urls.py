@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from principal.views import Muestra
+from pedidos.views import PedidoView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('publicacion/<str:idpublicacion>', Muestra.as_view(), name='muestra')
+    path('publicacion/<str:idpublicacion>', Muestra.as_view(), name='muestra'),
+    path('pedidos/', PedidoView.as_view(), name='pedidos')
 ]
